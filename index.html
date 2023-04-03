@@ -5,39 +5,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>responsive navbar</title>
+
     <link rel="stylesheet" href="style.css">
+    <title>Responive Navbar</title>
 </head>
 
-<body>
+<body onload="initate()">
     <nav>
-        <ul class="open_menu">
-            <li>titleGoesHere</li>
-            <li id="menu" class="menu menu_closed" onclick="toggleMenu()">
-                <hr>
-                <hr>
-                <hr>
-            </li>
-            <li><a href="http://" target="_blank" rel="noopener noreferrer">item1</a></li>
-            <li><a href="http://" target="_blank" rel="noopener noreferrer">item2</a></li>
-            <li><a href="http://" target="_blank" rel="noopener noreferrer">itme3</a></li>
-
-        </ul>
+        <span class="title">titleGoesHere</span>
+        <div id="menu" class="menu " onclick="toggleMenu()">
+            <hr>
+            <hr>
+            <hr>
+        </div>
+        <div class="nav_links">
+            <a href="" class="nav_link">link</a>
+            <a href="" class="nav_link">link</a>
+            <a href="" class="nav_link">link</a>
+        </div>
 
     </nav>
+
+
+
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let count;
+
+        function initate() {
+            count = 0;
+        }
+
+        let menu = $("#menu");
+        function toggleMenu() {
+            if (count == 0) {
+                menu.toggleClass("menu_open")
+                count = 1;
+            }
+            else {
+                menu.toggleClass("menu_closed");
+                menu.toggleClass("menu_open")
+            }
+        }
+    </script>
+
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-    integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-
-    let menu = $("#menu");
-    function toggleMenu() {
-        menu.toggleClass("menu_closed");
-        menu.toggleClass("menu_open")
-    }
-
-</script>
 
 </html>
