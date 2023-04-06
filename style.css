@@ -12,12 +12,14 @@ a {
 nav {
   width: 100%;
   font-size: 1.4rem;
-  background-color: rgb(179, 36, 60);
+  background-color: rgb(62, 181, 255);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   height: 4.5rem;
+  position: relative;
+  z-index: 999;
 }
 nav > * {
   margin: 20px;
@@ -99,8 +101,9 @@ nav .menu {
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    background-color: rgb(179, 36, 60);
+    background-color: rgb(62, 181, 255);
     margin: 0;
+    position: relative;
     z-index: -1;
     padding: 2rem 0rem;
     transform: translateY(-120%);
@@ -112,8 +115,16 @@ nav .menu {
   nav .menu_open + .nav_links {
     animation: slide_down 0.75s ease-in-out forwards;
   }
+  nav .menu_open + .nav_links a {
+    opacity: 0;
+    animation: fade_in 0.3s ease-in-out 0.5s forwards;
+  }
   nav .menu_closed + .nav_links {
     animation: slide_up 0.75s ease-in-out forwards;
+  }
+  nav .menu_closed + .nav_links a {
+    opacity: 1;
+    animation: fade_out 0.3s ease-in-out forwards;
   }
 }
 @keyframes open1 {
@@ -179,4 +190,29 @@ nav .menu {
   100% {
     transform: translateY(-120%);
   }
+}
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade_out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.text-px {
+  font-size: 16px;
+  color: red;
+}
+
+.text-rem {
+  font-size: 1rem;
+  color: blue;
 }/*# sourceMappingURL=style.css.map */

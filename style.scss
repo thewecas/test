@@ -6,7 +6,7 @@
   //   border: 1px solid blue;
 }
 
-$bg: rgb(179, 36, 60);
+$bg: rgb(62, 181, 255);
 a {
   text-decoration: none;
 }
@@ -14,13 +14,14 @@ a {
 nav {
   width: 100%;
   font-size: 1.4rem;
-
   background-color: $bg;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   height: 4.5rem;
+  position: relative;
+  z-index: 999;
   > * {
     margin: 20px;
   }
@@ -118,19 +119,29 @@ nav {
       width: 100vw;
       background-color: $bg;
       margin: 0;
+      position: relative;
       z-index: -1;
       padding: 2rem 0rem;
+      transform: translateY(-120%);
+      // transform: translateY(-10%);
       .nav_link {
         min-width: 10rem;
         text-align: center;
       }
-      transform: translateY(-120%);
     }
     .menu_open + .nav_links {
       animation: slide_down 0.75s ease-in-out forwards;
+      a {
+        opacity: 0;
+        animation: fade_in 0.3s ease-in-out 0.5s forwards;
+      }
     }
     .menu_closed + .nav_links {
       animation: slide_up 0.75s ease-in-out forwards;
+      a {
+        opacity: 1;
+        animation: fade_out 0.3s ease-in-out forwards;
+      }
     }
   }
 }
@@ -210,4 +221,31 @@ nav {
   100% {
     transform: translateY(-120%);
   }
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade_out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.text-px {
+  font-size: 16px;
+  color: red;
+}
+
+.text-rem {
+  font-size: 1rem;
+  color: blue;
 }
