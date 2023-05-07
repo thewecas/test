@@ -318,6 +318,31 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><code>refund() should return funds to sender after timelock has expired</code>: checks that <code>refund()</code> returns funds to the sender after the timelock has expired.</li>
 <li><code>refund() should fail before the timelock has expired</code>: checks that <code>refund()</code> fails when the timelock has not yet expired.</li>
 </ul>
+<h2 class="mume-header" id="contract">Contract</h2>
+
+<p>Each contract will store following details, using a struct,</p>
+<ul>
+<li><code>sender</code>: the address of the sender who locked the funds</li>
+<li><code>receiver</code>: the address of the receiver who can claim the funds</li>
+<li><code>amount</code>: the amount of Ether locked in the contract</li>
+<li><code>hashlock</code>: the hash of the secret that the receiver must provide to claim the funds</li>
+<li><code>timelock</code>: the UNIX timestamp in seconds after which the sender can retrieve the funds if the receiver has not claimed them</li>
+<li><code>withdrawn</code>: a boolean indicating whether the funds have been claimed by the receiver</li>
+<li><code>refunded</code>: a boolean indicating whether the funds have been refunded to the sender</li>
+<li><code>preimage</code>: the preimage of the hash, which the receiver must provide to claim the funds</li>
+</ul>
+<p>The contract has the following functions:</p>
+<ul>
+<li>
+<p><code>newContract()</code>: a function that creates a new HTLC by locking up funds and providing the necessary details. The function takes three arguments: <code>_receiver</code>, <code>_hashlock</code>, and <code>_timelock</code>.  The function returns the ID of the new HTLC, which is the hash of the arguments passed to the function.</p>
+</li>
+<li>
+<p><code>withdraw()</code>: a function that allows the receiver to claim the funds by providing the preimage of the hash. The function takes two arguments: <code>_contractId</code> and <code>_preimage</code>. If the preimage matches the hash, the funds are transferred to the receiver.</p>
+</li>
+<li>
+<p><code>refund()</code>: a function that allows the sender to retrieve the funds if the receiver has not claimed them before the specified time. The function takes one argument: <code>_contractId</code>, which is the ID of the HTLC. If the specified time has passed and the funds have not been claimed, the sender can retrieve them.</p>
+</li>
+</ul>
 
       </div>
       
